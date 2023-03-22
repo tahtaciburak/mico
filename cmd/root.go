@@ -26,7 +26,10 @@ var rootCmd = &cobra.Command{
 	Short: "mico [micho] is a AI driven kubectl helper",
 	Long:  `Write your prompt and get your kubectl command`,
 	Args: func(cmd *cobra.Command, args []string) error {
-		if len(args) < 1 {
+		p, err := cmd.PersistentFlags().GetString("prompt")
+		cobra.CheckErr(err)
+
+		if len(p) < 1 {
 			cmd.Help()
 			os.Exit(0)
 		}
