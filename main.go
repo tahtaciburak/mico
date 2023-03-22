@@ -1,6 +1,6 @@
 package main
 
-import "mico/cmd"
+import "github.com/tahtaciburak/mico/cmd"
 
 func main() {
 	cmd.Execute()
