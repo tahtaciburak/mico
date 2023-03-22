@@ -2,6 +2,7 @@
 
 >mico: [micho] The person who has just started working in the deck sections of the ships is called miço.
 
+![mascot](img/mascot.png)
 
 `mico` is an AI assisted `kubectl` helper designed to simplify and automate Kubernetes cluster management tasks. It uses the power of OpenAI's GPT-3.5 architecture to understand natural language queries and generate `kubectl` commands that can be used to perform various tasks on your Kubernetes cluster.
 ## Installation
