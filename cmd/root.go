@@ -26,6 +26,10 @@ var rootCmd = &cobra.Command{
 	Short: "mico [micho] is a AI driven kubectl helper",
 	Long:  `Write your prompt and get your kubectl command`,
 	Args: func(cmd *cobra.Command, args []string) error {
+		if len(args) < 1 {
+			cmd.Help()
+			os.Exit(0)
+		}
 		if err := viper.ReadInConfig(); err != nil {
 			fmt.Println("You should run `mico configure` before running.")
 			os.Exit(1)
