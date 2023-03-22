@@ -26,5 +26,6 @@ func GetKubectlCommand(prompt string) string {
 	cobra.CheckErr(err)
 	response := strings.TrimSpace(resp.Choices[0].Message.Content)
 	command := strings.ReplaceAll(response, "{\"command\":\"", "")
+	command = strings.ReplaceAll(response, "{\"command\": \"", "")
 	return command[:len(command)-2]
 }
