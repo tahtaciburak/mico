@@ -8,7 +8,7 @@
 ## Installation
 You can install `mico` using the following command:
 ```
-go install github.com/tahtaciburak/mico
+go install github.com/tahtaciburak/mico@latest
 ```
 
 ## Configure
