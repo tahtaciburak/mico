@@ -17,11 +17,21 @@ func GetKubectlCommand(prompt string) string {
 	ctx := context.Background()
 	apikey := viper.GetString("openai")
 	client := gpt3.NewClient(apikey)
-	msg := gpt3.ChatCompletionRequestMessage{Role: "user", Content: constructPrompt(prompt)}
+	systemMessage := gpt3.ChatCompletionRequestMessage{
+		Role:    "system",
+		Content: "You are a kubectl command helper you will help me to create kubectl commands according to my prompt.",
+	}
+	message := gpt3.ChatCompletionRequestMessage{
+		Role:    "user",
+		Content: constructPrompt(prompt)}
+
+	var messages []gpt3.ChatCompletionRequestMessage
+	messages = append(messages, systemMessage)
+	messages = append(messages, message)
 
 	resp, err := client.ChatCompletion(ctx, gpt3.ChatCompletionRequest{
 		Model:    gpt3.GPT3Dot5Turbo0301,
-		Messages: []gpt3.ChatCompletionRequestMessage{msg},
+		Messages: messages,
 	})
 	cobra.CheckErr(err)
 	response := strings.TrimSpace(resp.Choices[0].Message.Content)
